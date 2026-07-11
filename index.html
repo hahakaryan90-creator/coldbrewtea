@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小红书企业获客课程｜从内容到成交</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#FF0800;
+    --red-hover:#E00000;
+    --ink:#1A1A1A;
+    --ink-soft:#4a4a4a;
+    --paper:#FFFFFF;
+    --blush:#FFF4F2;
+    --ash:#F7F7F7;
+    --line:#EAE4E2;
+    --green:#16A34A;
+    --serif:'Noto Serif SC', serif;
+    --sans:'Noto Sans SC', sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--sans);
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img,svg{display:block; max-width:100%;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+  .wrap-narrow{max-width:860px; margin:0 auto; padding:0 24px;}
+
+  h1,h2,h3{font-family:var(--serif); font-weight:900; letter-spacing:.01em;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:13px; font-weight:700; letter-spacing:.08em;
+    color:var(--red); text-transform:uppercase;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{content:''; width:22px; height:2px; background:var(--red); display:inline-block;}
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    background:var(--red); color:#fff; font-family:var(--sans); font-weight:700;
+    font-size:17px; padding:17px 34px; border-radius:14px; border:none;
+    cursor:pointer; text-decoration:none; transition:background .18s ease, transform .18s ease;
+    box-shadow:0 8px 24px rgba(255,8,0,.25);
+  }
+  .btn:hover{background:var(--red-hover); transform:translateY(-2px);}
+  .btn-ghost{
+    background:transparent; color:var(--ink); border:1.5px solid var(--line);
+    box-shadow:none;
+  }
+  .btn-ghost:hover{background:var(--ash); transform:none;}
+  .btn-sub{display:block; margin-top:10px; font-size:13px; color:var(--ink-soft); font-weight:400;}
+
+  section{padding:96px 0;}
+  @media (max-width:720px){ section{padding:64px 0;} }
+
+  /* ---------- NAV ---------- */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,255,255,.9); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav .wrap{display:flex; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:16px;}
+  .logo{font-family:var(--serif); font-weight:900; font-size:20px;}
+  .logo span{color:var(--red);}
+  .nav .btn{padding:11px 22px; font-size:14px; border-radius:10px;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:88px 0 80px;
+    background:linear-gradient(180deg, var(--blush) 0%, #fff 78%);
+    position:relative;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:56px; align-items:center;
+  }
+  @media (max-width:900px){ .hero-grid{grid-template-columns:1fr;} }
+  .hero h1{
+    font-size:44px; line-height:1.28; color:var(--ink);
+  }
+  .hero h1 .dim{color:#b7b0ad;}
+  .hero h1 .strike{position:relative; color:#b7b0ad;}
+  @media (max-width:520px){ .hero h1{font-size:32px;} }
+  .hero-sub{
+    margin-top:24px; font-size:17px; color:var(--ink-soft); max-width:520px;
+  }
+  .hero-tags{
+    margin-top:32px; display:flex; flex-wrap:wrap; gap:12px;
+  }
+  .tag{
+    font-size:14px; font-weight:700; padding:9px 16px; border-radius:999px;
+    background:#fff; border:1px solid var(--line);
+  }
+  .tag.gift{background:var(--red); color:#fff; border-color:var(--red);}
+  .hero-cta{margin-top:34px;}
+
+  /* phone mock signature element */
+  .phone-stage{position:relative; display:flex; justify-content:center;}
+  .phone{
+    width:280px; background:var(--ink); border-radius:36px; padding:14px;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,.35);
+    transform:rotate(3deg);
+  }
+  .phone-screen{
+    background:#fff; border-radius:24px; overflow:hidden; position:relative; padding-bottom:14px;
+  }
+  .phone-post{
+    height:180px; background:
+      linear-gradient(160deg, #ffb3ab 0%, var(--red) 65%);
+    position:relative;
+  }
+  .phone-post::after{
+    content:'内容'; position:absolute; bottom:14px; left:14px; color:#fff;
+    font-family:var(--serif); font-weight:900; font-size:22px;
+  }
+  .phone-meta{padding:12px 14px 4px; font-size:12px; color:var(--ink-soft); display:flex; justify-content:space-between;}
+  .phone-bubbles{padding:6px 14px 4px; display:flex; flex-direction:column; gap:8px;}
+  .bubble{
+    align-self:flex-start; background:var(--ash); border-radius:14px 14px 14px 4px;
+    padding:8px 12px; font-size:12px; color:var(--ink); max-width:78%;
+    opacity:0; animation:pop .5s ease forwards;
+  }
+  .bubble.me{align-self:flex-end; background:var(--red); color:#fff; border-radius:14px 14px 4px 14px;}
+  .bubble:nth-child(1){animation-delay:.3s;}
+  .bubble:nth-child(2){animation-delay:.9s;}
+  .bubble:nth-child(3){animation-delay:1.5s;}
+  @keyframes pop{from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:translateY(0);}}
+  .phone-badge{
+    position:absolute; top:-16px; right:-18px; background:var(--green); color:#fff;
+    font-size:12px; font-weight:700; padding:8px 14px; border-radius:999px;
+    box-shadow:0 10px 20px rgba(22,163,74,.35);
+    display:flex; align-items:center; gap:6px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    .bubble{animation:none; opacity:1;}
+    .phone{transform:none;}
+  }
+  @media (max-width:900px){ .phone{transform:none; margin-top:12px;} }
+
+  /* ---------- SECTION HEADS ---------- */
+  .sec-head{max-width:640px; margin-bottom:56px;}
+  .sec-head h2{font-size:34px; line-height:1.4; color:var(--ink);}
+  .sec-head p{margin-top:14px; font-size:16px; color:var(--ink-soft);}
+  .center{text-align:center; margin-left:auto; margin-right:auto;}
+
+  /* ---------- PAIN GRID ---------- */
+  .alt-bg{background:var(--ash);}
+  .pain-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:20px;
+  }
+  @media (max-width:860px){ .pain-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .pain-grid{grid-template-columns:1fr;} }
+  .pain-card{
+    background:#fff; border:1px solid var(--line); border-radius:18px; padding:28px 24px;
+  }
+  .pain-card .ic{font-size:26px; margin-bottom:14px;}
+  .pain-card h3{font-family:var(--sans); font-weight:700; font-size:17px; margin-bottom:8px;}
+  .pain-card p{font-size:14px; color:var(--ink-soft);}
+
+  /* ---------- COMPARISON ---------- */
+  .compare{
+    display:grid; grid-template-columns:1fr 1fr; gap:0;
+    border-radius:22px; overflow:hidden; border:1px solid var(--line);
+  }
+  @media (max-width:720px){ .compare{grid-template-columns:1fr;} }
+  .compare-col{padding:40px 34px;}
+  .compare-col.no{background:var(--ash);}
+  .compare-col.yes{background:var(--ink); color:#fff;}
+  .compare-label{
+    display:flex; align-items:center; gap:10px; font-weight:700; font-size:15px; margin-bottom:22px;
+  }
+  .compare-col.no .compare-label{color:#9a9a9a;}
+  .compare-col.yes .compare-label{color:#ffb3ab;}
+  .compare-col ul{list-style:none;}
+  .compare-col li{
+    padding:12px 0; border-bottom:1px solid rgba(0,0,0,.06); font-size:15px;
+  }
+  .compare-col.yes li{border-bottom:1px solid rgba(255,255,255,.1); font-weight:500;}
+  .compare-col.no li{color:#6b6b6b;}
+  .compare-summary{
+    text-align:center; margin-top:40px; font-family:var(--serif); font-weight:700;
+    font-size:22px; color:var(--ink); line-height:1.6;
+  }
+  .compare-summary em{color:var(--red); font-style:normal;}
+
+  /* ---------- FEATURE 2x3 ---------- */
+  .feat-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line);
+    border:1px solid var(--line); border-radius:18px; overflow:hidden;
+  }
+  @media (max-width:860px){ .feat-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:560px){ .feat-grid{grid-template-columns:1fr;} }
+  .feat-card{background:#fff; padding:32px 26px;}
+  .feat-num{font-family:var(--serif); font-weight:700; font-size:13px; color:var(--red); margin-bottom:14px;}
+  .feat-card h3{font-family:var(--sans); font-weight:700; font-size:18px; margin-bottom:8px;}
+  .feat-card p{font-size:14px; color:var(--ink-soft);}
+
+  /* ---------- WHY US ---------- */
+  .why-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+  @media (max-width:860px){ .why-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:520px){ .why-grid{grid-template-columns:1fr;} }
+  .why-card{
+    border-radius:18px; padding:30px 22px; background:var(--blush);
+    border:1px solid #ffd9d4;
+  }
+  .why-check{
+    width:34px; height:34px; border-radius:50%; background:var(--red); color:#fff;
+    display:flex; align-items:center; justify-content:center; font-weight:900; margin-bottom:16px;
+  }
+  .why-card h3{font-family:var(--sans); font-weight:700; font-size:16px; margin-bottom:8px;}
+  .why-card p{font-size:14px; color:var(--ink-soft);}
+
+  /* ---------- WHO ---------- */
+  .who-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:16px 28px;
+  }
+  @media (max-width:640px){ .who-grid{grid-template-columns:1fr;} }
+  .who-item{
+    display:flex; align-items:center; gap:14px; font-size:16px; font-weight:500;
+    padding:16px 20px; background:#fff; border:1px solid var(--line); border-radius:14px;
+  }
+  .who-item .check{
+    flex:none; width:26px; height:26px; border-radius:50%; background:var(--green);
+    color:#fff; display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:900;
+  }
+
+  /* ---------- CURRICULUM ---------- */
+  .curr-list{border-top:1px solid var(--line);}
+  .curr-item{
+    display:grid; grid-template-columns:90px 1fr; gap:24px; align-items:baseline;
+    padding:22px 0; border-bottom:1px solid var(--line);
+  }
+  .curr-item .mnum{font-family:var(--serif); font-weight:900; font-size:15px; color:var(--red);}
+  .curr-item .mtitle{font-size:17px; font-weight:700;}
+
+  /* ---------- TESTIMONIAL PLACEHOLDER ---------- */
+  .proof-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+  @media (max-width:860px){ .proof-grid{grid-template-columns:1fr;} }
+  .proof-card{
+    background:#fff; border:1px solid var(--line); border-radius:18px; padding:26px;
+  }
+  .stars{color:var(--red); font-size:15px; letter-spacing:2px; margin-bottom:14px;}
+  .proof-stat{
+    display:flex; justify-content:space-between; background:var(--ash); border-radius:12px;
+    padding:14px 16px; margin-top:16px; font-size:13px;
+  }
+  .proof-stat b{display:block; font-family:var(--serif); font-size:20px; color:var(--ink);}
+  .proof-name{margin-top:16px; font-size:13px; color:var(--ink-soft); display:flex; align-items:center; gap:10px;}
+  .avatar{width:34px; height:34px; border-radius:50%; background:var(--blush); border:1px solid var(--line); flex:none;}
+
+  /* ---------- PRICING ---------- */
+  .pricing-card{
+    max-width:520px; margin:0 auto; background:var(--ink); color:#fff; border-radius:26px;
+    padding:44px 40px; position:relative; overflow:hidden;
+  }
+  .pricing-card::before{
+    content:''; position:absolute; top:-60px; right:-60px; width:200px; height:200px;
+    background:radial-gradient(circle, rgba(255,8,0,.35), transparent 70%);
+  }
+  .value-list{margin-top:28px; border-top:1px solid rgba(255,255,255,.14);}
+  .value-row{
+    display:flex; justify-content:space-between; padding:13px 0; font-size:14px;
+    border-bottom:1px solid rgba(255,255,255,.14); color:#d8d8d8;
+  }
+  .value-row span:last-child{text-decoration:line-through; color:#8a8a8a;}
+  .value-total{
+    display:flex; justify-content:space-between; padding-top:18px; font-weight:700; font-size:15px;
+  }
+  .value-total span:last-child{text-decoration:line-through; color:#8a8a8a; font-weight:400;}
+  .price-final{
+    margin-top:26px; text-align:center; background:rgba(255,255,255,.06); border-radius:18px; padding:26px;
+  }
+  .price-final .label{font-size:13px; color:#ffb3ab; font-weight:700; margin-bottom:6px;}
+  .price-final .num{font-family:var(--serif); font-size:46px; font-weight:900;}
+  .price-final .num small{font-size:18px; font-weight:700;}
+  .gift-line{
+    margin-top:18px; display:flex; align-items:center; justify-content:center; gap:8px;
+    font-size:14px; font-weight:700; color:#fff;
+  }
+  .pricing-card .btn{width:100%; margin-top:26px;}
+
+  /* ---------- FAQ ---------- */
+  .faq{border-top:1px solid var(--line);}
+  details{border-bottom:1px solid var(--line); padding:22px 0;}
+  summary{
+    cursor:pointer; list-style:none; display:flex; justify-content:space-between; align-items:center;
+    font-weight:700; font-size:16px;
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary::after{content:'+'; font-size:22px; color:var(--red); font-weight:400; transition:transform .2s ease;}
+  details[open] summary::after{transform:rotate(45deg);}
+  details p{margin-top:14px; font-size:14.5px; color:var(--ink-soft); max-width:640px;}
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{
+    background:var(--ink); color:#fff; text-align:center; position:relative; overflow:hidden;
+  }
+  .final-cta::before{
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(circle at 50% 0%, rgba(255,8,0,.28), transparent 60%);
+  }
+  .final-cta .wrap-narrow{position:relative;}
+  .final-cta h2{font-size:36px; color:#fff; line-height:1.4;}
+  .final-cta p{margin-top:18px; color:#cfcfcf; font-size:16px;}
+  .final-gift{
+    margin:30px auto 0; display:inline-flex; align-items:center; gap:10px;
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.18);
+    padding:12px 22px; border-radius:999px; font-size:14px; font-weight:700;
+  }
+  .final-cta .btn{margin-top:30px;}
+
+  /* ---------- STICKY MOBILE CTA ---------- */
+  .sticky-cta{
+    position:fixed; left:0; right:0; bottom:0; z-index:60;
+    background:#fff; border-top:1px solid var(--line);
+    padding:12px 16px; display:none;
+    box-shadow:0 -10px 30px rgba(0,0,0,.08);
+  }
+  .sticky-cta .btn{width:100%; padding:14px;}
+  @media (max-width:720px){
+    .sticky-cta{display:block;}
+    body{padding-bottom:74px;}
+  }
+
+  footer{padding:36px 0; text-align:center; font-size:12.5px; color:#9a9a9a;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <div class="logo">小红书<span>获客</span>课程</div>
+    <a href="#pricing" class="btn">立即报名</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">SME 企业主专属</span>
+      <h1>不是不会做内容，<br>而是你做的内容，<span class="dim">没有帮你赚钱。</span></h1>
+      <p class="hero-sub">每天发帖、拍影片、经营社交媒体，却没有询盘、没有客户、没有成交？学习一套真正适合企业老板的小红书获客系统，让内容持续带来客户，而不是浪费时间。</p>
+      <div class="hero-tags">
+        <span class="tag">小红书课程（RM2997）</span>
+        <span class="tag gift">🎁 报名即送 1 对 1 企业诊断</span>
+      </div>
+      <div class="hero-cta">
+        <a href="#pricing" class="btn">我要领取免费诊断</a>
+      </div>
+    </div>
+    <div class="phone-stage">
+      <div class="phone">
+        <div class="phone-badge">✅ 已成交</div>
+        <div class="phone-screen">
+          <div class="phone-post"></div>
+          <div class="phone-meta"><span>❤ 2,341 赞</span><span>💬 68 留言</span></div>
+          <div class="phone-bubbles">
+            <div class="bubble">请问这个多少钱？可以私讯吗？</div>
+            <div class="bubble me">当然可以，我发详情给你 👋</div>
+            <div class="bubble">好的，我要下单！</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN POINTS -->
+<section class="alt-bg">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow" style="justify-content:center;">常见困境</span>
+      <h2>内容一直做，<br>为什么客户还是没有来？</h2>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card"><div class="ic">😩</div><h3>做了很多内容</h3><p>每天发文、拍影片，浏览量很低，没有人留言。</p></div>
+      <div class="pain-card"><div class="ic">🚫</div><h3>被限流、被封号</h3><p>不知道哪里违规，账号一直没有成长。</p></div>
+      <div class="pain-card"><div class="ic">💸</div><h3>有流量，没有成交</h3><p>有人点赞，却没有客户主动咨询。</p></div>
+      <div class="pain-card"><div class="ic">🤯</div><h3>不知道该拍什么</h3><p>每天都在想题材，内容越来越没有方向。</p></div>
+      <div class="pain-card"><div class="ic">📉</div><h3>花钱投广告</h3><p>广告越投越贵，获客成本越来越高。</p></div>
+      <div class="pain-card"><div class="ic">😵</div><h3>没时间研究算法</h3><p>每天经营公司已经很忙，根本没有时间一直试错。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section>
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow" style="justify-content:center;">真相</span>
+      <h2>真正赚钱的，不是会拍影片的人。<br>而是懂得建立获客系统的人。</h2>
+    </div>
+    <div class="compare">
+      <div class="compare-col no">
+        <div class="compare-label">❌ 一般人</div>
+        <ul>
+          <li>想到什么拍什么</li>
+          <li>追热门</li>
+          <li>一直发文</li>
+          <li>等客户上门</li>
+          <li>靠运气</li>
+        </ul>
+      </div>
+      <div class="compare-col yes">
+        <div class="compare-label">✅ 我们的方法</div>
+        <ul>
+          <li>建立个人 IP</li>
+          <li>打造企业品牌</li>
+          <li>内容布局 ＋ 关键词布局</li>
+          <li>自动获客</li>
+          <li>成交流程设计</li>
+        </ul>
+      </div>
+    </div>
+    <p class="compare-summary">小红书不是娱乐平台，<br>它是<em>企业获客平台</em>。</p>
+  </div>
+</section>
+
+<!-- COURSE VALUE -->
+<section class="alt-bg">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">课程可以帮助你什么</span>
+      <h2>一套课程，解决企业老板<br>最重要的获客问题。</h2>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-num">01</div><h3>建立个人 IP</h3><p>让客户先认识你，再相信你。</p></div>
+      <div class="feat-card"><div class="feat-num">02</div><h3>建立企业账号</h3><p>让品牌持续曝光，不用一直打广告。</p></div>
+      <div class="feat-card"><div class="feat-num">03</div><h3>小红书算法</h3><p>知道怎样发内容，才不会一直限流。</p></div>
+      <div class="feat-card"><div class="feat-num">04</div><h3>内容变现</h3><p>让每一篇内容，都有机会带来客户。</p></div>
+      <div class="feat-card"><div class="feat-num">05</div><h3>AI 内容工具</h3><p>不会写文案？AI 帮你完成。</p></div>
+      <div class="feat-card"><div class="feat-num">06</div><h3>获客系统</h3><p>从流量到成交，建立完整流程。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">为什么选择我们</span>
+      <h2>不只是教你做内容，<br>而是陪你把内容变成业绩。</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-card"><div class="why-check">✓</div><h3>1 对 1 企业诊断</h3><p>报名后，导师会直接分析你的企业。</p></div>
+      <div class="why-card"><div class="why-check">✓</div><h3>企业培训经验</h3><p>服务企业，不是只教个人账号。</p></div>
+      <div class="why-card"><div class="why-check">✓</div><h3>实战课程</h3><p>全部来自真实案例，不是网络搬运。</p></div>
+      <div class="why-card"><div class="why-check">✓</div><h3>可落地执行</h3><p>每堂课都有 SOP，上完马上开始做。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO -->
+<section class="alt-bg">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">适合谁</span>
+      <h2>如果你符合以下其中一个，<br>这堂课就是为你准备。</h2>
+    </div>
+    <div class="who-grid">
+      <div class="who-item"><span class="check">✓</span>SME 老板</div>
+      <div class="who-item"><span class="check">✓</span>企业创办人</div>
+      <div class="who-item"><span class="check">✓</span>想打造个人 IP</div>
+      <div class="who-item"><span class="check">✓</span>想做品牌曝光</div>
+      <div class="who-item"><span class="check">✓</span>想获得更多客户</div>
+      <div class="who-item"><span class="check">✓</span>不想一直烧广告费</div>
+      <div class="who-item"><span class="check">✓</span>有团队需要培训</div>
+      <div class="who-item"><span class="check">✓</span>想建立长期获客系统</div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRICULUM -->
+<section>
+  <div class="wrap-narrow">
+    <div class="sec-head">
+      <span class="eyebrow">课程大纲</span>
+      <h2>10 个模块，从定位到成交</h2>
+    </div>
+    <div class="curr-list">
+      <div class="curr-item"><span class="mnum">Module 01</span><span class="mtitle">建立个人 IP 定位</span></div>
+      <div class="curr-item"><span class="mnum">Module 02</span><span class="mtitle">小红书账号搭建</span></div>
+      <div class="curr-item"><span class="mnum">Module 03</span><span class="mtitle">平台算法解析</span></div>
+      <div class="curr-item"><span class="mnum">Module 04</span><span class="mtitle">爆款内容公式</span></div>
+      <div class="curr-item"><span class="mnum">Module 05</span><span class="mtitle">AI 写文案</span></div>
+      <div class="curr-item"><span class="mnum">Module 06</span><span class="mtitle">AI 制作图片</span></div>
+      <div class="curr-item"><span class="mnum">Module 07</span><span class="mtitle">AI 短视频</span></div>
+      <div class="curr-item"><span class="mnum">Module 08</span><span class="mtitle">企业获客系统</span></div>
+      <div class="curr-item"><span class="mnum">Module 09</span><span class="mtitle">成交流程</span></div>
+      <div class="curr-item"><span class="mnum">Module 10</span><span class="mtitle">案例拆解</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROOF -->
+<section class="alt-bg">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow" style="justify-content:center;">学员见证</span>
+      <h2>他们都已经开始用小红书获客了</h2>
+    </div>
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="stars">★★★★★</div>
+        <p>上完课重新调整了账号定位，内容开始有陌生客户主动私讯询价。</p>
+        <div class="proof-stat"><span>浏览量成长</span><b>+—</b></div>
+        <div class="proof-name"><span class="avatar"></span>美容行业老板</div>
+      </div>
+      <div class="proof-card">
+        <div class="stars">★★★★★</div>
+        <p>终于知道内容要怎么布局才不会一直被限流，团队也一起上了培训。</p>
+        <div class="proof-stat"><span>私讯数量</span><b>+—</b></div>
+        <div class="proof-name"><span class="avatar"></span>餐饮企业创办人</div>
+      </div>
+      <div class="proof-card">
+        <div class="stars">★★★★★</div>
+        <p>1 对 1 诊断直接点出账号问题，比自己摸索快很多。</p>
+        <div class="proof-stat"><span>成交客户</span><b>+—</b></div>
+        <div class="proof-name"><span class="avatar"></span>教育机构负责人</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow" style="justify-content:center;">课程价格</span>
+      <h2>一次学习，持续获客。</h2>
+    </div>
+    <div class="pricing-card">
+      <div class="eyebrow" style="color:#ffb3ab;">课程价值</div>
+      <div class="value-list">
+        <div class="value-row"><span>个人 IP 课程</span><span>RM1,997</span></div>
+        <div class="value-row"><span>AI 工具教学</span><span>RM997</span></div>
+        <div class="value-row"><span>内容系统</span><span>RM1,997</span></div>
+        <div class="value-row"><span>企业获客系统</span><span>RM2,997</span></div>
+        <div class="value-row"><span>1 对 1 企业诊断</span><span>RM997</span></div>
+        <div class="value-total"><span>总价值</span><span>RM8,985</span></div>
+      </div>
+      <div class="price-final">
+        <div class="label">今天报名</div>
+        <div class="num"><small>RM</small>2,997</div>
+        <div class="gift-line">🎁 免费送 · 1 对 1 企业诊断</div>
+      </div>
+      <a href="#form" class="btn">我要报名</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="alt-bg">
+  <div class="wrap-narrow">
+    <div class="sec-head">
+      <span class="eyebrow">常见问题</span>
+      <h2>FAQ</h2>
+    </div>
+    <div class="faq">
+      <details>
+        <summary>会不会很难？</summary>
+        <p>不会。课程从零开始教，不需要任何基础。</p>
+      </details>
+      <details>
+        <summary>我不会拍影片怎么办？</summary>
+        <p>有 AI 工具协助，不会剪辑也可以完成内容。</p>
+      </details>
+      <details>
+        <summary>我的行业适合吗？</summary>
+        <p>几乎所有行业都可以，餐饮、美容、教育、制造业、服务业都适合。</p>
+      </details>
+      <details>
+        <summary>公司团队可以一起学习吗？</summary>
+        <p>可以，也可以安排企业内训。</p>
+      </details>
+      <details>
+        <summary>上完课还有人可以问吗？</summary>
+        <p>有，课程结束后依然可以获得指导。</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta" id="form">
+  <div class="wrap-narrow">
+    <h2>别再浪费时间，一直做没有结果的内容。<br>现在开始，让内容帮你赚钱。</h2>
+    <p>报名课程，立即获得 1 对 1 企业账号诊断。</p>
+    <div class="final-gift">✅ 免费 1 对 1 企业账号诊断（价值 RM997）</div><br>
+    <a href="https://wa.me/60000000000" class="btn">👉 我要报名课程</a>
+  </div>
+</section>
+
+<footer>
+  © 2026 小红书企业获客课程 · 名额有限，额满恢复原价
+</footer>
+
+<div class="sticky-cta">
+  <a href="#pricing" class="btn">立即报名 · 领取免费 1 对 1 诊断</a>
+</div>
+
+</body>
+</html>
